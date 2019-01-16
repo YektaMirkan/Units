@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="UnitsNet.Serialization.JsonNet.Common.props" />
+
+  <!-- Unsigned project references, will also generate the corresponding nuget dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
+  </ItemGroup>
+
+</Project>
