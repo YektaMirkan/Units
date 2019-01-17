@@ -89,5 +89,13 @@ namespace UnitsNet.Units
         Torr,
     }
 
+    enum PressureReference
+    {
+        Undefined = 0,
+        Absolute,
+        Gauge,
+        Vacuum,
+    }
+
     #pragma warning restore 1591
 }
