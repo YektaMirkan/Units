@@ -1319,6 +1319,8 @@ namespace UnitsNet
         /// </summary>
         public static Pressure MinValue => new Pressure(double.MinValue, BaseUnit);
 
+        public static Pressure Reference { get; set; } = new Pressure(1, PressureUnit.Atmosphere);
+
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>

@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -107,6 +108,15 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsPerInchSecondSquaredInOnePascal => 5.599741459495891e-2;
 
+
+        [Fact]
+        public void ReferencePressure()
+        {
+            var referencePressure = Pressure.Reference;
+            Pressure.Reference = new Pressure(2,PressureUnit.Atmosphere);
+            Assert.False(referencePressure.Atmospheres.Equals(Pressure.Reference.Atmospheres));
+            Assert.True(Pressure.Reference.Atmospheres.Equals(2));
+        }
         [Fact]
         public void AreaTimesPressureEqualsForce()
         {
