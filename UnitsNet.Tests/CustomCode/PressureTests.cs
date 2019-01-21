@@ -20,7 +20,6 @@
 // THE SOFTWARE.
 
 using System;
-using UnitsNet.CustomCode.Extensions;
 using UnitsNet.Units;
 using Xunit;
 
@@ -109,23 +108,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsPerInchSecondSquaredInOnePascal => 5.599741459495891e-2;
 
-        [Fact]
-        public void AbsoluteToGauge()
-        {
-            AssertEx.EqualTolerance(4, Pressure.FromAtmospheres(5).AsGauge().Atmospheres, AtmospheresTolerance);
-            AssertEx.EqualTolerance(3.98675, Pressure.FromKilopascals(500).AsGauge().Bars, AtmospheresTolerance);
-            AssertEx.EqualTolerance(57.823, Pressure.FromMegapascals(0.5).AsGauge().PoundsForcePerSquareInch, AtmospheresTolerance);
-            AssertEx.EqualTolerance(274.3, Pressure.FromPoundsForcePerSquareInch(20).AsGauge().Torrs, AtmospheresTolerance);
-        }
-
-        [Fact]
-        public void ReferencePressure_isChanged()
-        {
-            var referencePressure = Pressure.Reference;
-            Pressure.Reference = new Pressure(2,PressureUnit.Atmosphere);
-            Assert.False(referencePressure.Atmospheres.Equals(Pressure.Reference.Atmospheres));
-            Assert.True(Pressure.Reference.Atmospheres.Equals(2));
-        }
+       
         [Fact]
         public void AreaTimesPressureEqualsForce()
         {

@@ -77,6 +77,10 @@ namespace UnitsNet
         /// </summary>
         public PressureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
+        /// <summary>
+        ///     The measured reference this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+
         static Pressure()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
@@ -108,6 +112,7 @@ namespace UnitsNet
             _value = numericValue;
             _unit = unit;
         }
+
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -148,6 +153,7 @@ namespace UnitsNet
         /// </summary>
         public static PressureUnit BaseUnit => PressureUnit.Pascal;
 
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -160,6 +166,8 @@ namespace UnitsNet
         ///     All units of measurement for the Pressure quantity.
         /// </summary>
         public static PressureUnit[] Units { get; } = Enum.GetValues(typeof(PressureUnit)).Cast<PressureUnit>().Except(new PressureUnit[]{ PressureUnit.Undefined }).ToArray();
+
+       
 
         /// <summary>
         ///     Get Pressure in Atmospheres.
@@ -951,7 +959,6 @@ namespace UnitsNet
             return new Pressure(value, PressureUnit.Torr);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureUnit" /> to <see cref="Pressure" />.
         /// </summary>
@@ -959,7 +966,7 @@ namespace UnitsNet
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Pressure unit value.</returns>
 #if WINDOWS_UWP
-        // Fix name conflict with parameter "value"
+// Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
         public static Pressure From(double value, PressureUnit fromUnit)
 #else
@@ -1319,7 +1326,6 @@ namespace UnitsNet
         /// </summary>
         public static Pressure MinValue => new Pressure(double.MinValue, BaseUnit);
 
-        public static Pressure Reference { get; set; } = new Pressure(1, PressureUnit.Atmosphere);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.

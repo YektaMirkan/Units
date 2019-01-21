@@ -1,3 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="UnitsNet.Common.props" />
+  <ItemGroup>
+    <None Include="CustomCode\Wrappers\Pressure.Wrapper.cs" />
+  </ItemGroup>
 </Project>
