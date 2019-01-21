@@ -40,44 +40,22 @@ namespace UnitsNet.CustomCode.Wrappers
         ///     Get Gauge Pressure.
         ///     It refers pressure level above Reference Pressure.
         /// </summary>
-        public Pressure Gauge => AsGauge(PressureReference.Gauge);
+        public Pressure Gauge => As(PressureReference.Gauge);
 
         /// <summary>
         ///     Get Absolute Pressure.
         ///     It is zero-referenced pressure to the perfect vacuum.
         /// </summary>
-        public Pressure Absolute => AsAbsolute(PressureReference.Absolute);
+        public Pressure Absolute => As(PressureReference.Absolute);
 
         /// <summary>
         ///     Get Vacuum Pressure.
         ///     It is a negative Gauge Pressure when Absolute Pressure is below Reference Pressure.
         /// </summary>
-        public Pressure Vacuum => AsVacuum(PressureReference.Vacuum);
+        public Pressure Vacuum => As(PressureReference.Vacuum);
 
 
-        private Pressure AsGauge(PressureReference reference)
-        {
-            if (Reference == reference)
-                return new Pressure(Pressure.Value, Pressure.Unit);
-
-            var converted = AsBaseNumericType(reference);
-
-            if (converted < 0) converted *= -1;
-            return new Pressure(converted, Pressure.Unit);
-        }
-
-        private Pressure AsAbsolute(PressureReference reference)
-        {
-            if (Reference == reference)
-                return new Pressure(Pressure.Value, Pressure.Unit);
-
-            var converted = AsBaseNumericType(reference);
-
-            if (converted < 0) converted *= -1;
-            return new Pressure(converted, Pressure.Unit);
-        }
-
-        private Pressure AsVacuum(PressureReference reference)
+        private Pressure As(PressureReference reference)
         {
             if (Reference == reference)
                 return new Pressure(Pressure.Value, Pressure.Unit);
